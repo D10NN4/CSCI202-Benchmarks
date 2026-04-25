@@ -80,6 +80,23 @@ def run_benchmarks():
     end_hd1 = time.time()
     print(f"HD Benchmark 1 Total time: {end_hd1 - start_hd1} seconds")
 
+    # 5. Hard Drive Benchmark 2 (10,000 byte blocks)
+    print("Starting Hard Drive Benchmark 2...")
+    block_size_2 = 10000
+    
+    start_hd2 = time.time()
+    # Write
+    with open("test2.bin", "wb") as f:
+        data = b"0" * block_size_2
+        for _ in range(file_size // block_size_2):
+            f.write(data)
+    # Read
+    with open("test2.bin", "rb") as f:
+        for _ in range(file_size // block_size_2):
+            f.read(block_size_2)
+    end_hd2 = time.time()
+    print(f"HD Benchmark 2 Total time: {end_hd2 - start_hd2} seconds")
+
 if __name__ == "__main__":
     run_benchmarks()
 
